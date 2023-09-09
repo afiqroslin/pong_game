@@ -24,10 +24,10 @@ class Bat:
         self.segment.append(bat)    # Add bat to segment list, this list is made to control the movement of the bat
 
     def up(self):
-        new_y = self.bat.ycor() + 30
+        new_y = self.bat.ycor() + 50
         self.bat.goto(self.bat.xcor(), new_y)
 
     def down(self):
-        new_y = self.bat.ycor() - 30
+        new_y = self.bat.ycor() - 50
         self.bat.goto(self.bat.xcor(), new_y)
 
