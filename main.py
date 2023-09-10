@@ -4,6 +4,7 @@ from turtle import Screen
 from bat import Bat
 from ball import Ball
 from scoreboard import Scoreboard
+from instruction import Instruction
 import time
 
 screen = Screen()
@@ -20,6 +21,7 @@ player2 = Bat(480)
 
 ball = Ball()
 score = Scoreboard()
+instruction = Instruction()
 
 # Set movement key
 screen.listen()
@@ -33,7 +35,8 @@ game_is_on = True
 while game_is_on:
     screen.update()
     time.sleep(ball.sleep_time)
-    print(ball.sleep_time)
+    Instruction()
+    # print(ball.sleep_time)
     ball.move()
 
     # Detect collision with top and bottom wall
