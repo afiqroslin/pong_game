@@ -21,40 +21,47 @@ player2 = Bat(480)
 
 ball = Ball()
 score = Scoreboard()
-instruction = Instruction()
 
-# Set movement key
-screen.listen()
-screen.onkeypress(player2.up, "Up")     # Onkeypress let the bat keep moving while holding down the key
-screen.onkeypress(player2.down, "Down")
-screen.onkeypress(player.up, "w")
-screen.onkeypress(player.down, "s")
 
-game_is_on = True
+def play_game():
+    # Set movement key
+    screen.listen()
+    screen.onkeypress(player2.up, "Up")  # Onkeypress let the bat keep moving while holding down the key
+    screen.onkeypress(player2.down, "Down")
+    screen.onkeypress(player.up, "w")
+    screen.onkeypress(player.down, "s")
 
-while game_is_on:
-    screen.update()
-    time.sleep(ball.sleep_time)
-    Instruction()
-    # print(ball.sleep_time)
-    ball.move()
+    game_is_on = True
 
-    # Detect collision with top and bottom wall
-    if ball.ycor() > 280 or ball.ycor() < -280:
-        ball.bounce_y()
+    while game_is_on:
+        screen.update()
+        time.sleep(ball.sleep_time)
+        Instruction()
+        # print(ball.sleep_time)
+        ball.move()
 
-    # Detect collision with players bat
-    if ball.distance(player2.bat) < 30 and ball.xcor() > 320 or ball.distance(player.bat) < 30 and ball.xcor() < -320:
-        ball.bounce_x()
+        # Detect collision with top and bottom wall
+        if ball.ycor() > 280 or ball.ycor() < -280:
+            ball.bounce_y()
 
-    # Detect if the ball over the left at right side of the screen, it will be out of bound
-    if ball.xcor() > 550:
-        ball.out_of_bound()
-        score.player_score_up()
+        # Detect collision with players bat
+        if ball.distance(player2.bat) < 30 and ball.xcor() > 320 or ball.distance(
+                player.bat) < 30 and ball.xcor() < -320:
+            ball.bounce_x()
 
-    if ball.xcor() < -550:
-        ball.out_of_bound()
-        score.player2_score_up()
+        # Detect if the ball over the left at right side of the screen, it will be out of bound
+        if ball.xcor() > 550:
+            ball.out_of_bound()
+            score.player_score_up()
 
+        if ball.xcor() < -550:
+            ball.out_of_bound()
+            score.player2_score_up()
+
+
+user_input = screen.textinput(title="Start game?",
+                              prompt="Would you like to play? ")
+if user_input.lower() == "yes":
+    play_game()
 
 screen.exitonclick()
