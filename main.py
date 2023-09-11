@@ -59,9 +59,11 @@ def play_game():
             score.player2_score_up()
 
 
-user_input = screen.textinput(title="Start game?",
-                              prompt="Would you like to play? ")
-if user_input.lower() == "yes":
-    play_game()
+user_choice = True
+while user_choice:
+    user_input = screen.textinput(title="Pong",
+                                  prompt="Type 'yes' to play ")
+    if user_input.lower() == "yes":
+        play_game()
 
 screen.exitonclick()
